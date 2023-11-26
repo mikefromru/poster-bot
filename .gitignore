@@ -1,0 +1,14 @@
+.env
+env
+.venv
+venv
+
+*.sqlite
+*.sqlilte3
+*.sql
+
+local_settings.py
+
+__pycache__.py
+__init__.py
+backup
