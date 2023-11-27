@@ -5,7 +5,7 @@ from aiogram.types import Message
 from aiogram import Bot
 import os
 
-from news.my_news import data
+from news.my_news import get_news, run_posts
 
 client_router = Router()
 
@@ -24,8 +24,13 @@ async def command_start_handler(message: Message) -> None:
 @client_router.message(Command('post'))
 async def command_start_handler(message: Message, bot: Bot) -> None:
     if int(os.getenv('USER_ID')) == message.from_user.id:
-        # var = f'{data[0].get('title')} {data[0].get('description')}'
-        var = data[0].get('title') + '\nVakera'
-        await bot.send_message(chat_id=os.getenv('CHAT_ID'), text=var)
+        # post = get_news()
+        post = await run_posts()
+        await bot.send_photo(
+            chat_id=os.getenv('CHAT_ID'), 
+            photo=post.get('enclosure'),
+            caption=post.get('title'),
+        )
+        # await bot.send_message(chat_id=os.getenv('CHAT_ID'), photo=post.get('enclosure'))
     else:
         await message.answer(f'You can not use it, {message.from_user.id}')
