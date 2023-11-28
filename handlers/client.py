@@ -27,7 +27,6 @@ async def command_start_handler(message: Message, bot: Bot) -> None:
     if int(os.getenv('USER_ID')) == message.from_user.id:
         while True:
             post = get_news()
-            print(post)
             if post != None:
                 try:
                     await bot.send_photo(
