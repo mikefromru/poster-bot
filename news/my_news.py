@@ -6,22 +6,28 @@ import random
 import time
 
 
-lst = []
 
-async def foo(a):
+lst = []
+lst = [d for d in lst if not any(value is None for value in d.values())]
+
+def foo(a):
     try:
         kak = a.get('url')
         return kak 
     except:
         return None
 
-'''
-async def get_news() -> dict():
+
+
+lst = []
+current_post = {}
+
+def get_news() -> dict():
+    global current_post
+    updated_lst = []
+    # if len(lst) == 0:
     ua = UserAgent()
-    header = {
-        'User-Agent':  str(ua.chrome),
-    }
-    # print(ua.chrome)
+    header = {'User-Agent':  str(ua.chrome)}
     url = 'https://news.ru/rss/type/post/'
 
     try:
@@ -30,86 +36,84 @@ async def get_news() -> dict():
         print(f'Error fetching the URL {url}')
         print(err)
 
-    # soup = bs(r.text, "html.parser")
     soup = bs(r.text, "xml")
-
-    for item in soup.find_all('item'):
+    try:
+        item = soup.find('item')
         dct = {
                 'title': item.title.text, 
                 'description': item.description.text,
                 # 'pub': item.puDate,
-                'enclosure': await foo(item.enclosure),
+                'enclosure': item.enclosure.get('url'),
                 'category': item.category.text,
-            } 
-        lst.append(dct)
-
-    # return (f'{lst}, Amount: {len(lst)}')
-    return lst
-'''
-
-async def get_news() -> dict():
-    ua = UserAgent()
-    header = {
-        'User-Agent':  str(ua.chrome),
-    }
-    # print(ua.chrome)
-    # url = 'https://news.ru/rss/type/post/'
-
-    try:
-        r = requests.get(url, headers=header)
-    except Exception as err:
-        print(f'Error fetching the URL {url}')
-        print(err)
-
-    # soup = bs(r.text, "html.parser")
-    soup = bs(r.text, "xml")
-
-    for item in soup.find_all('item'):
-        dct = {
-                'title': item.title.text, 
-                'description': item.description.text,
-                # 'pub': item.puDate,
-                'enclosure': await foo(item.enclosure),
-                'category': item.category.text,
-            } 
-        lst.append(dct)
-
-    # return (f'{lst}, Amount: {len(lst)}')
-    return lst
-
-
-async def run_posts__():
-    print('kak')
-    try:
-        print(lst[1])
-        return lst[1]
-    except:
-        await get_news()
-
-async def run_posts():
-    j = 0
-    while True:
-        await asyncio.sleep(3)
-        run_posts__()
-        # time.sleep(3)
-        print(j)
-        j += 1
-
-
-
-# run_posts()
-'''
-def run_posts():
-    while True:
-        if len(lst) > 0:
-            # return (f'{lst}, Amount: {len(lst)}')
-            print(random.choice(lst))
-            lst.pop()
-            # return (f'{lst}, Amount: {len(lst)}')
+            }
+        if current_post.get('title') != dct.get('title'):
+            print('Posting ...')
+            current_post = dct
+            return dct
         else:
-            print('The END >>>')
-            get_news()
-        time.sleep(1)
+            print('This post is posted already ...')
+            return None
 
-# print(run_posts())
+    except AttributeError as err:
+        print(err)
+        return None
+
+
+    # dct = {
+        # 'title': kak.title.text,
+
+    # }
+    '''
+    for item in soup.find_all('item'):
+        dct = {
+                'title': item.title.text, 
+                'description': item.description.text,
+                # 'pub': item.puDate,
+                'enclosure': foo(item.enclosure),
+                'category': item.category.text,
+            }
+
+        lst.append(dct)
+        updated_lst.append(dct)
+    '''
+
+    print(f'Amount: {len(lst)}')
+    # if lst[0].get('title')
+    return None
+    # return {'title': '', 'description': '', 'category': ''}
+
+
+'''
+lst = []
+
+def get_news() -> dict():
+
+    if len(lst) == 0:
+        ua = UserAgent()
+        header = {'User-Agent':  str(ua.chrome)}
+        url = 'https://news.ru/rss/type/post/'
+
+        try:
+            r = requests.get(url, headers=header)
+        except Exception as err:
+            print(f'Error fetching the URL {url}')
+            print(err)
+
+        soup = bs(r.text, "xml")
+
+        for item in soup.find_all('item'):
+            dct = {
+                    'title': item.title.text, 
+                    'description': item.description.text,
+                    # 'pub': item.puDate,
+                    'enclosure': foo(item.enclosure),
+                    'category': item.category.text,
+                }
+            lst.append(dct)
+
+
+    print(f'Amount: {len(lst)}')
+    # print(lst)
+    return lst.pop()
+    # return random.choice(lst)
 '''

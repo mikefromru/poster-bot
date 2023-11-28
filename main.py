@@ -17,7 +17,7 @@ async def main() -> None:
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
     dp = Dispatcher()
     dp.include_routers(client.client_router)
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, drop_pending_update=False)
 
 
 if __name__ == "__main__":
