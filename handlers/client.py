@@ -22,7 +22,13 @@ async def command_help_handler(message: Message) -> None:
 async def command_start_handler(message: Message) -> None:
     await message.answer(f"Hello, {hbold(message.from_user.full_name)}!")
 
-@client_router.message(Command('post'))
+@client_router.message(Command('post_mems'))
+async def command_start_handler(message: Message) -> None:
+    while True:
+        await message.answer('Mems!')
+        await asyncio.sleep(10) 
+
+@client_router.message(Command('post_news'))
 async def command_start_handler(message: Message, bot: Bot) -> None:
     if int(os.getenv('USER_ID')) == message.from_user.id:
         while True:
@@ -32,13 +38,12 @@ async def command_start_handler(message: Message, bot: Bot) -> None:
                     await bot.send_photo(
                         chat_id=os.getenv('CHAT_ID'), 
                         photo=post.get('enclosure'),
-                        caption=f'{hbold(post.get("title"))}\n{post.get("description")}\n{post.get("category")}',
-                        # caption=f'{hbold(post.get('title'))} \n{post.get('description')}',
+                        caption=f'{hbold(post.get("title"))}\n\n{post.get("description")}\n{post.get("category")}',
                     )
                 except:
                     await bot.send_message(
                         chat_id=os.getenv('CHAT_ID'), 
-                        text=f'{hbold(post.get("title"))}\n{post.get("description")}\n{post.get("category")}',
+                        text=f'{hbold(post.get("title"))}\n\n{post.get("description")}\n{post.get("category")}',
                     )
             await asyncio.sleep(180) 
         else:
