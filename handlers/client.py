@@ -13,21 +13,6 @@ from news.news import get_news
 
 client_router = Router()
 
-@client_router.message(Command('help'))
-async def command_help_handler(message: Message) -> None:
-    await message.answer(f"This is help part of help, {hbold(message.from_user.id)}!")
-
-
-@client_router.message(Command('description'))
-async def command_help_handler(message: Message) -> None:
-    await message.answer(f"This is help part of description, {hbold(message.from_user.full_name)}!")
-
-
-@client_router.message(Command('start'))
-async def command_start_handler(message: Message) -> None:
-    await message.answer(f"Hello, {hbold(message.from_user.full_name)}!")
-
-
 @client_router.message(Command('post_mems'))
 async def command_mems_handler(message: Message, bot: Bot) -> None:
     if int(os.getenv('USER_ID')) == message.from_user.id:
