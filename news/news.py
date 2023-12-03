@@ -1,9 +1,8 @@
 import asyncio
 import aiohttp
-import requests
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup as bs
-import os, sys
+import os
 
 
 current_post = {}
@@ -46,5 +45,3 @@ async def get_news() -> dict():
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(get_news())
-
-
