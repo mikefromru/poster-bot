@@ -1,0 +1,9 @@
+aiogram
+aiohttp
+asyncpraw
+beautifulsoup4
+fake-useragent
+lxml
+Pillow
+pytesseract
+python-dotenv
