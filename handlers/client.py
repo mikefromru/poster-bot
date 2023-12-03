@@ -10,22 +10,23 @@ import random
 from memes.memes import get_memes
 from news.news import get_news
 
+
 client_router = Router()
 
 @client_router.message(Command('help'))
 async def command_help_handler(message: Message) -> None:
     await message.answer(f"This is help part of help, {hbold(message.from_user.id)}!")
 
+
 @client_router.message(Command('description'))
 async def command_help_handler(message: Message) -> None:
     await message.answer(f"This is help part of description, {hbold(message.from_user.full_name)}!")
+
 
 @client_router.message(Command('start'))
 async def command_start_handler(message: Message) -> None:
     await message.answer(f"Hello, {hbold(message.from_user.full_name)}!")
 
-
-# https://v.redd.it/h6y4pu255q3c1
 
 @client_router.message(Command('post_mems'))
 async def command_mems_handler(message: Message, bot: Bot) -> None:
@@ -41,7 +42,6 @@ async def command_mems_handler(message: Message, bot: Bot) -> None:
                 await bot.send_photo(
                     chat_id=os.getenv('HUMOR_CHAT_ID'), 
                     photo=post.get('url'),
-                    # caption=f'{hbold(post.get("title"))}',
                 )
             await asyncio.sleep(random.randint(3600, 7200))
 
