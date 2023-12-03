@@ -19,7 +19,6 @@ async def main() -> None:
     dp.include_routers(client.client_router)
     await dp.start_polling(bot, drop_pending_update=False)
 
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
     asyncio.run(main())

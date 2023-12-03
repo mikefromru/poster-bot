@@ -57,7 +57,6 @@ async def command_news_handler(message: Message, bot: Bot) -> None:
                         chat_id=os.getenv('NEWS_CHAT_ID'), 
                         photo=post.get('enclosure'),
                         caption=f'{hbold(post.get("title"))}\n\n{post.get("description")}',
-                        # caption=f'{hbold(post.get("title"))}\n\n{post.get("description")}\n{post.get("category")}',
                     )
 
                 except:
