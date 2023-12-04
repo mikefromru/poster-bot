@@ -8,12 +8,12 @@ It is totally asynchronous. This bot posts in two channels. From Reddit it gets 
 
 Poster-bot uses a number of open source projects to work properly:
 
-- Python - HTML enhanced for web apps!
-- Asyncio - awesome web-based text editor
-- Aiogram - Markdown parser done right. Fast and easy to extend.
-- Aiohttp - great UI boilerplate for modern web apps
-- BeautifulSoup4 - evented I/O for the backend
-- Asyncpraw - fast node.js network app framework [@tjholowaychuk]
+- Python - interpreted, object-oriented, high-level programming language!
+- Asyncio - library to write concurrent code using the async/await syntax.
+- Aiogram - modern and fully asynchronous framework for Telegram Bot.
+- Aiohttp - HTTP client/server for asyncio.
+- BeautifulSoup4 - library for pulling data out of HTML and XML files.
+- Asyncpraw - python package that allows for simple access to Reddit's API.
 
 Set the environment variables in the .env file (Required variables are given below for development)
 
