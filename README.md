@@ -34,7 +34,7 @@ REDIRECT_URI=
 
 Make a python file `memes/local_tools.py`
 ```
-lst_subreddits = ['funny','memes']
+lst_subreddits = ['<your-subreddit_1>','<your-subreddit_2>']
 ```
 
 ## Installation
