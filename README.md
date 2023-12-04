@@ -64,3 +64,12 @@ Now you can run the Docker image.
 docker run -d poster
 ```
 
+## Now you can run the bot commands in the bot
+Run posting news
+```
+/post_news
+```
+Run posting memes
+```
+/post_memes
+```

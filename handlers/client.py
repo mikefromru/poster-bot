@@ -13,7 +13,7 @@ from news.news import get_news
 
 client_router = Router()
 
-@client_router.message(Command('post_mems'))
+@client_router.message(Command('post_memes'))
 async def command_mems_handler(message: Message, bot: Bot) -> None:
     if int(os.getenv('USER_ID')) == message.from_user.id:
         while True:
